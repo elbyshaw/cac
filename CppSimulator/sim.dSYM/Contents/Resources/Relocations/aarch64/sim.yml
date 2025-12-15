@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/nickowens/Dev/cac/CppSimulator/sim'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AE0, symSize: 0x408 }
+  - { offsetInCU: 0x3F, offset: 0x3F, size: 0x8, addend: 0x0, symName: _NUM_INPUTS, symObjAddr: 0x408, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x66, offset: 0x66, size: 0x8, addend: 0x0, symName: _DATA_MAX, symObjAddr: 0x40C, symBinAddr: 0x100008004, symSize: 0x0 }
+  - { offsetInCU: 0x5A5, offset: 0x5A5, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AE0, symSize: 0x408 }
+...
