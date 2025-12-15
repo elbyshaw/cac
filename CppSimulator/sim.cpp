@@ -97,6 +97,5 @@ int main(int argc, char *argv[]) {
     for (unsigned int i = 0; i < NUM_INPUTS; i++) {
         printf("Cycle: %d \t South Value: %d \t East Value: %d \n",
             i, south_values[i], east_values[i]);
-        
     }
 }
