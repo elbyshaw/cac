@@ -9,7 +9,8 @@ Something with Synthesizability
 # Plan
 
 # Step 1: Small open source module implementation
-- Write systolic array cell in RTL
+- Write systolic array simulator in Cpp
+- Write systolic array in RTL
 - Synthesize with Yosys
 - Implement with Librelane
 - Extra features?
