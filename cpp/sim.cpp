@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <cstdlib>
+#include <time.h>
 
 #define NUM_BITS 4
 #define NUM_INPUTS 4
@@ -12,6 +13,9 @@
 
 int main(int argc, char *argv[]) {
     //========== PRELIMINARY DATA ==============
+
+		// seed rand
+		srand((unsigned int) time(NULL));		
 
     // sequence of inputs coming from the north
     u_int32_t north_values[NUM_INPUTS];
