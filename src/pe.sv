@@ -28,13 +28,13 @@ module pe import pkg::*;(
 			// always propagate B 
 			right_o <= left_i;	
 			case (mux_i) 
-				PASSTHROUGH: begin
+				S_PASSTHROUGH: begin
 					bottom_o <= top_i;
 				end			
-				LOAD: begin
+				S_LOAD: begin
 					stationary <= top_i;
 				end
-				PROCESS: begin
+				S_PROCESS: begin
 					bottom_o <= result;
 				end
 			endcase
@@ -48,4 +48,5 @@ module pe import pkg::*;(
 		end else begin
 			result = multiply + top_i; // add previous sum (C)		
 		end
+	end
 endmodule
