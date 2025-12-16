@@ -5,13 +5,13 @@
 #define NUM_BITS 4
 #define NUM_INPUTS 4
 
-#define DATA_MAX (1<<NUM_BITS)
+#define DATA_MAX (1 << NUM_BITS)
 
 int main(int argc, char *argv[]) {
     //========== PRELIMINARY DATA ==============
 
-		// seed rand
-		srand((unsigned int) time(NULL));		
+    // seed rand
+    srand((unsigned int) time(NULL));		
 
     // sequence of inputs coming from the north
     u_int32_t north_values[NUM_INPUTS];
@@ -88,7 +88,6 @@ int main(int argc, char *argv[]) {
     for (unsigned int i = 0; i < NUM_INPUTS; i++) {
         printf("Cycle: %d \t North Value: %d \t West Value: %d \n",
             i, north_values[i], west_values[i]);
-        
     }
     printf("Stationary Value: %d \n", stationary_register);
     printf("\n \n");
