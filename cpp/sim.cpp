@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <cstdlib>
 
+#define NUM_BITS 4
+#define NUM_INPUTS 4
+
+#define DATA_MAX (1<<NUM_BITS)
+
 // QUESTION: How to handle overflow?
 // I just added a maximum possible input data value here
 // but obviously that wouldn't occur
-
-u_int32_t NUM_INPUTS = 4;
-u_int32_t DATA_MAX = 16;
 
 int main(int argc, char *argv[]) {
     //========== PRELIMINARY DATA ==============
@@ -36,7 +38,6 @@ int main(int argc, char *argv[]) {
     // Corresponds to B[x][y] in the implementation in pptx
     u_int32_t west_input;
 
-
     // Output leaving to the south
     // Should equal the newly calculated C partial sum
     u_int32_t south_output;
@@ -51,12 +52,12 @@ int main(int argc, char *argv[]) {
 
     // Assigns random values to north inputs
     for (unsigned int i = 0; i < NUM_INPUTS; i++) {
-        north_values[i] = rand() % DATA_MAX;
-        west_values[i] = rand() % DATA_MAX;
+        north_values[i] = rand() & DATA_MAX - 1;
+        west_values[i] = rand() & DATA_MAX - 1;
     }
 
     // Assigns random value to the stationary data
-    stationary_register = rand() % DATA_MAX;
+    stationary_register = rand() & DATA_MAX - 1;
 
 
     // ============ CALCULATIONS =============
