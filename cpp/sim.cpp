@@ -7,10 +7,6 @@
 
 #define DATA_MAX (1<<NUM_BITS)
 
-// QUESTION: How to handle overflow?
-// I just added a maximum possible input data value here
-// but obviously that wouldn't occur
-
 int main(int argc, char *argv[]) {
     //========== PRELIMINARY DATA ==============
 
