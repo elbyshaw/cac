@@ -1,4 +1,8 @@
 module pe import pkg::*;(
+	// clock and reset
+	input logic clk_i,
+	input logic rst_i,
+
 	// primary inputs and outputs
 	input logic [NUM_BITS-1:0] top_i,
 	input logic [NUM_BITS-1:0] left_i,
@@ -6,13 +10,9 @@ module pe import pkg::*;(
 	output logic [NUM_BITS-1:0] right_o,
 	output logic [NUM_BITS-1:0] bottom_o,
 
-	// clock and reset
-	input logic clk_i,
-	input logic rst_i
-
 	// control signals
-	input input_mux_t mux_i;
-	input logic add_zero_i; // logic high
+	input input_mux_t mux_i,
+	input logic add_zero_i // logic high
 	);
 
 	// internal register to track A
