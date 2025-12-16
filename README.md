@@ -1,6 +1,6 @@
 # Ideas
 Inline Synthesis Block Diagram Visualizer
-Idea 2
+Something with Synthesizability
 
 | |
 |-|
