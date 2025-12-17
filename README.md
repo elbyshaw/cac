@@ -2,9 +2,7 @@
 Inline Synthesis Block Diagram Visualizer
 Something with Synthesizability
 
-| |
-|-|
-| |
+----
 
 # Plan
 
@@ -24,11 +22,11 @@ Something with Synthesizability
 - Improve open source flow?
 - Design a more complex / interesting module?
 
-| |
-|-|
-| |
+-----
 
 # Tools
 Synthesis: Yosys
+
 Implementation: OpenROAD/OpenLane2/Librelane
+
 Signoff/Verification: Magic/Klayout
