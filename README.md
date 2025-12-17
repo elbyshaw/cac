@@ -50,7 +50,7 @@ Investigate OpenROAD, OpenLane2, and LibreLane.
 
 [answer here]
 
-#### Which one should we uses? Do we need to use more than one?
+#### Which one should we use? Do we need to use more than one?
 
 [answer here]
 
