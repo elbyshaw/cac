@@ -28,13 +28,13 @@ module pe import pkg::*;(
 			// always propagate B 
 			right_o <= left_i;	
 			case (mux_i) 
-				S_PASSTHROUGH: begin
+				PASSTHROUGH: begin
 					bottom_o <= top_i;
 				end			
-				S_LOAD: begin
+				LOAD: begin
 					stationary <= top_i;
 				end
-				S_PROCESS: begin
+				PROCESS: begin
 					bottom_o <= result;
 				end
 			endcase
