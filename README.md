@@ -69,3 +69,37 @@ Investigate OpenROAD, OpenLane2, and LibreLane.
 [answer here]
 
 
+## Challenge/extension:
+
+_Cadence is a proprietary suite of tools we use in SiliconJackets. See if you can compile a list of Cadence tools that you think would be necessary to take a design from RTL to GDSII_
+
+[answer here]
+
+_Explain what each of the following acronyms mean:_
+
+**RTL:** [answer here]
+
+**GDSii:** [answer here]
+
+**DFT:** [answer here]
+
+**ATPG:** [answer here]
+
+**DRC:** [answer here]
+
+**LVS:** [answer here]
+
+**LEC:** [answer here]
+
+**STA:** [answer here]
+
+
+----
+
+# Tasks
+
+- Cpp Simulator
+- Systolic Array RTL
+- RTL Verification
+- Open source sapr
+- Proprietary sapr
