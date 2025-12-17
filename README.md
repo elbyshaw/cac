@@ -32,15 +32,15 @@ Signoff/Verification: Magic/Klayout
 
 ### Yosys
 
-answer here
+[answer here]
 
 #### What does it do?
 
-answer here
+[answer here]
 
 #### How do we use it?
 
-answer here
+[answer here]
 
 ### Implementation
 
@@ -48,24 +48,24 @@ Investigate OpenROAD, OpenLane2, and LibreLane.
 
 #### Explain the differences between each toolset
 
-answer here
+[answer here]
 
 #### Which one should we uses? Do we need to use more than one?
 
-answer here
+[answer here]
 
 ### Extra Features
 
 #### What do Magic and Klayout do?
 
-answer here
+[answer here]
 
 #### How do we use them?
 
-answer here
+[answer here]
 
 #### Are they necessary for what we're doing?
 
-answer here
+[answer here]
 
 
