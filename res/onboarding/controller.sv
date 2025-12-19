@@ -36,13 +36,14 @@ module controller import calculator_pkg::*;(
 
 	//State reg, other registers as needed
 	always_ff @(posedge clk_i) begin
-		if (rst_i)
+		if (rst_i) begin
 			state <= S_IDLE;
 			r_addr <= read_start_addr; // reset addresses on reset
 			w_addr <= write_start_addr;
 			buffer_control <= 1'b1; // BUG?: set to 1 for when it gets inverted in first read
-		else
+		end else begin
 			state <= next;
+		end
 	end
 
 	always_ff @(posedge clk_i) begin
@@ -56,11 +57,11 @@ module controller import calculator_pkg::*;(
 			S_READ: begin
 				r_addr <= r_addr + 1'b1; // BUG?: starts one address ahead?
 				w_addr <= w_addr;
-				if (buffer_control == '0) {
+				if (buffer_control == '0) begin
 					buffer_control <= 1'b1;
-				} else {
+				end else begin
 					buffer_control <= '0;
-				}
+				end
 			end
 
 			S_ADD: begin
@@ -132,13 +133,14 @@ module controller import calculator_pkg::*;(
 				op_a = op_a;
 				op_b = op_b;
 
-				if (rst_i)
+				if (rst_i) begin
 					next = S_IDLE;
-				else if (r_addr >= read_end_addr
-						||	w_addr >= write_end_addr)
+				end else if (r_addr >= read_end_addr
+						||	w_addr >= write_end_addr) begin
 					next = S_END;
-				else 
+				end begin
 					next = S_READ;
+				end
 			end
 
 			S_END: begin
