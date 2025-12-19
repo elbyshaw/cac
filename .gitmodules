@@ -1,0 +1,3 @@
+[submodule "librelane"]
+	path = librelane
+	url = git@github.com:elbyshaw/librelane
