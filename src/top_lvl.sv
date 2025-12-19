@@ -6,8 +6,7 @@
  * and e_w wires (respectively) undefined. So this NEEDS TO BE FIXED.
  * - Nick
  */
-`include "pkg.v"
-module (
+module top_lvl import pkg::*; (
     input logic clk,
     input logic rst
 

@@ -1,33 +1,25 @@
-`include "pkg.v"
-module pe(
-    // CLOCK AND RESET
-    input logic clk_i,
-    input logic rst_i,
-
-    // DATA INPUT / OUTPUTS
-    // One element in final C array
-    input logic [NUM_BITS-1:0] C_i,
-    // N registers NUM_BITS wide
-    output logic [NUM_BITS-1:0] product_o [N],
-
-    // CONTROL SIGNAL
-    input logic valid_i
-    );
-
-    int i;
-
-    always_ff @(posedge clk_i) begin
-        if (rst_i) begin
-            for (i = 0; i < N; i++) 
-                product_o[i] <= '0;
-        end else begin
-            if (valid_i) begin
-                product_o[0] <= C_i;
-                for (i = 1; i < N; i++) begin
-                    product_o[i] <= product_o[i - 1];
-                end
-            end
-        end
-    end
-
+module accumulator (
+	clk_i,
+	rst_i,
+	C_i,
+	product_o,
+	valid_i
+);
+	input wire clk_i;
+	input wire rst_i;
+	localparam pkg_NUM_BITS = 8;
+	input wire [7:0] C_i;
+	localparam pkg_N = 4;
+	output reg [31:0] product_o;
+	input wire valid_i;
+	reg signed [31:0] i;
+	always @(posedge clk_i)
+		if (rst_i)
+			for (i = 0; i < pkg_N; i = i + 1)
+				product_o[(3 - i) * 8+:8] <= 1'sb0;
+		else if (valid_i) begin
+			product_o[24+:8] <= C_i;
+			for (i = 1; i < pkg_N; i = i + 1)
+				product_o[(3 - i) * 8+:8] <= product_o[(4 - i) * 8+:8];
+		end
 endmodule
