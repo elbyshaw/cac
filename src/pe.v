@@ -1,4 +1,6 @@
-module pe import pkg::*;(
+`include "pkg.v"
+module pe 
+	(
 	// clock and reset
 	input logic clk_i,
 	input logic rst_i,
@@ -40,6 +42,8 @@ module pe import pkg::*;(
 			endcase
 		end	
 	end
+
+	logic [NUM_BITS-1:0] multiply;	
 
 	always_comb begin
 		multiply = stationary * left_i;

@@ -1,3 +1,7 @@
 .DS_Store
 .vscode
 .vscode/*
+librelane/
+librelane/*
+sapr/runs/
+sapr/runs/*

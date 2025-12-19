@@ -1,4 +1,5 @@
-module pe import pkg::*;(
+`include "pkg.v"
+module pe(
     // CLOCK AND RESET
     input logic clk_i,
     input logic rst_i,
