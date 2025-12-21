@@ -1,4 +1,6 @@
-module pe import pkg::*; (
+import pkg::*; 
+
+module pe (
 	// clock and reset
 	input logic clk_i,
 	input logic rst_i,

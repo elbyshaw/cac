@@ -1,4 +1,6 @@
-module controller import pkg::*; (
+import pkg::*; 
+
+module controller (
     // CLOCK AND RESET
     input logic clk_i,
     input logic rst_i,

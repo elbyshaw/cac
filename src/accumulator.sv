@@ -1,4 +1,6 @@
-module accumulator import pkg::*; (
+import pkg::*;
+
+module accumulator (
     // CLOCK AND RESET
     input logic clk_i,
     input logic rst_i,
