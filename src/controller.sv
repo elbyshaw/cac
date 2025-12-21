@@ -119,7 +119,6 @@ module controller (
 			S_IDLE: begin
 				// create mask for accumulator activation
 				acc_mask <= { {N{1'b1}} << N };
-
 				for (i = 0; i < N; i++) 
 					acc_valid_o[i] <= '0;
 			end
@@ -130,9 +129,9 @@ module controller (
 			end
 
 			S_PROCESSING: begin
-				// once N cycles have passed start shifting acc_mask
+				// once (2*N)-1 cycles have passed start shifting acc_mask
 				// BUG?: TIMING MAY NEED TO BE ADJUSTED
-				if (counter >= N)
+				if (counter >= (2*N)-1 )
 					// not sure when exactly this happens in the process?
 					acc_mask <= acc_mask >> 1;
 
