@@ -6,6 +6,7 @@ module controller (
 	add_zero_o,
 	acc_valid_o
 );
+	reg _sv2v_0;
 	input wire clk_i;
 	input wire rst_i;
 	input wire ready_i;
@@ -32,9 +33,11 @@ module controller (
 		end
 		else
 			state <= next;
-	always @(posedge clk_i)
+	always @(*) begin
+		if (_sv2v_0)
+			;
 		case (state)
-			2'd0: next <= S_READ;
+			2'd0: next <= 2'd1;
 			2'd1:
 				if (counter <= pkg_N)
 					next <= 2'd1;
@@ -47,6 +50,7 @@ module controller (
 					next <= 2'd3;
 			2'd3: next <= 2'd3;
 		endcase
+	end
 	always @(posedge clk_i)
 		case (state)
 			2'd0:
@@ -84,7 +88,7 @@ module controller (
 				for (i = 0; i < pkg_N; i = i + 1)
 					acc_valid_o[i] <= 1'sb0;
 			2'd2: begin
-				if (counter >= pkg_N)
+				if (counter >= 7)
 					acc_mask <= acc_mask >> 1;
 				for (i = 0; i < pkg_N; i = i + 1)
 					acc_valid_o[i] <= acc_mask[i];
@@ -93,4 +97,5 @@ module controller (
 				for (i = 0; i < pkg_N; i = i + 1)
 					acc_valid_o[i] <= 1'sb0;
 		endcase
+	initial _sv2v_0 = 0;
 endmodule
