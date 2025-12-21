@@ -9,9 +9,14 @@
 
 module top_lvl import pkg::*; (
     input logic clk,
-    input logic rst
+    input logic rst,
 
     // inputs needed here?
+    input logic [NUM_BITS-1:0] north_i [N],
+    input logic [NUM_BITS-1:0] west_i [N],
+
+    // possibly bad - synthesizes weird
+    output logic [NUM_BITS-1:0] C_o [N][N]
 );
 
     // =================== WIRES ==================
@@ -38,6 +43,14 @@ module top_lvl import pkg::*; (
         .acc_valid_o    (acc_valid)
     );
 
+    // assign inputs to proper wires
+    always_comb begin
+        for (int i = 0; i < N; i++) begin
+            n_s[0][i] = north_i[i];
+            e_w[i][0] = west_i[i];
+        end
+    end
+
     // generate N x N PEs
     generate
         for (genvar i = 0; i < N; i++) begin
@@ -60,7 +73,7 @@ module top_lvl import pkg::*; (
                 .clk_i      (clk),
                 .rst_i      (rst),
                 .C_i        (n_s[N+1][i]),
-                .product_o  (/*[BLANK]*/),
+                .product_o  (C_o[i]), // not sure about this?
                 .valid_i    (acc_valid[i])
             );
         end
