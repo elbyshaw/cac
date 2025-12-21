@@ -44,6 +44,7 @@ module tb_systolic ();
 
 	initial begin
 		/* Test 1: Identity multiply
+		   SIZE: N = 4
 		A =	{1 0 0 0
 			 0 1 0 0
 			 0 0 1 0
@@ -59,9 +60,55 @@ module tb_systolic ();
 			 0 0 1 0
 			 0 0 0 1} */
 
+		// LOADING PHASE
 		// cycle 0
-		in_north = '{}
-		
+		in_north = '{0, 0, 0, 1'b1};
+		#CLK_PERIOD
+		// cycle 1
+		in_north = '{0, 0, 1'b1, 0};
+		#CLK_PERIOD
+		// cycle 2
+		in_north = '{0, 1'b1, 0, 0};
+		#CLK_PERIOD
+		// cycle 3
+		in_north = '{1'b1, 0, 0, 0};
+		#CLK_PERIOD
+
+		//PROCESSING PHASE
+		// cycle 4
+		in_west[0] = 1'b1;
+		#CLK_PERIOD
+		// cycle 5
+		in_west[0] = 0;
+		in_west[1] = 0;
+		#CLK_PERIOD
+		// cycle 6
+		in_west[0] = 0;
+		in_west[1] = 1;
+		in_west[2] = 0;
+		#CLK_PERIOD
+		// cycle 7
+		in_west[0] = 0;
+		in_west[1] = 0;
+		in_west[2] = 0;
+		in_west[3] = 0;
+		#CLK_PERIOD
+		// cycle 8
+		in_west[1] = 0;
+		in_west[2] = 1;
+		in_west[3] = 0;
+		#CLK_PERIOD
+		// cycle 9
+		in_west[2] = 0;
+		in_west[3] = 0;
+		#CLK_PERIOD
+		// cycle 10
+		in_west[3] = 1;
+		#CLK_PERIOD
+
+		#(CLK_PERIOD * 5) // necessary for data to finish computing
+
+		#(CLK_PERIOD * 5) // extra wait time
 
 
 		// not sure how to present data best
