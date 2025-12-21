@@ -17,7 +17,7 @@ module tb_systolic ();
 		.north_i	(in_north),
 		.west_i		(in_west),
 		.C_o		(out_C)
-	)
+	);
 
 	// generate clock
 	initial begin
@@ -29,21 +29,12 @@ module tb_systolic ();
 	initial begin
 		rst = 1'b1;
 		#CLK_PERIOD
-		reset = 1'b0;
+		rst = 1'b0;
 	end
 
 	// test stimulus
 	initial begin
-		/* cac/res/SystolicExplained.pptx 
-		explains how this should function */
-
-		// input 1:
-
-		$finish
-	end
-
-	initial begin
-		/* Test 1: Identity multiply
+				/* Test 1: Identity multiply
 		   SIZE: N = 4
 		A =	{1 0 0 0
 			 0 1 0 0
@@ -105,11 +96,17 @@ module tb_systolic ();
 		// cycle 10
 		in_west[3] = 1;
 		#CLK_PERIOD
-
+		// cycle 11
+		in_west[3] = 0;
+		#CLK_PERIOD
 		#(CLK_PERIOD * 5) // necessary for data to finish computing
 
 		#(CLK_PERIOD * 5) // extra wait time
 
+		$finish;
+	end
+
+	initial begin
 
 		// not sure how to present data best
 		// $monitor("Time %0t", $time);
