@@ -1,5 +1,7 @@
 import pkg::*;
 
+// Represents ONE COLUMN of accumulators
+
 module accumulator (
     // CLOCK AND RESET
     input logic clk_i,

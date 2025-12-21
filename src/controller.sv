@@ -42,10 +42,10 @@ module controller (
 
 	// set next state
 	// BUG?: TIMING MAY NEED TO BE ADJUSTED
-	always_ff @(posedge clk_i) begin
+	always_comb begin
 		case (state)
 			S_IDLE: begin
-				next <= S_READ;
+				next <= S_LOADING;
 			end
 
 			S_LOADING: begin
@@ -79,10 +79,10 @@ module controller (
 
 			S_LOADING: begin
 				//BUG?: TIMING MAY NEED TO BE ADJUSTED
-				if (counter < 3) begin
+				if (counter < N-1) begin
 					for (i = 0; i < N; i++) begin
 						for (j = 0; j < N; j++) begin
-							if (counter < 3)
+							if (counter < N-1)
 								mux_o[i][j] <= PASSTHROUGH;
 							else 
 								mux_o[i][j] <= LOAD;
@@ -113,7 +113,7 @@ module controller (
 		endcase
 	end
 
-	// controls PEs
+	// controls accumulator
 	always_ff @(posedge clk_i) begin
 		case (state)
 			S_IDLE: begin

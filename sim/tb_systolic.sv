@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // coop says this doesnt matter
 // but we may need to set it regardless
-module tb_systoli ();
+module tb_systolic ();
 	parameter CLK_PERIOD = 10;
 
 	// ========= SIGNALS ==========
@@ -34,13 +34,37 @@ module tb_systoli ();
 
 	// test stimulus
 	initial begin
+		/* cac/res/SystolicExplained.pptx 
+		explains how this should function */
+
 		// input 1:
-		
+
 		$finish
 	end
 
 	initial begin
+		/* Test 1: Identity multiply
+		A =	{1 0 0 0
+			 0 1 0 0
+			 0 0 1 0
+			 0 0 0 1}
+
+		B =	{1 0 0 0
+			 0 1 0 0
+			 0 0 1 0
+			 0 0 0 1}
+
+		C =	{1 0 0 0
+			 0 1 0 0
+			 0 0 1 0
+			 0 0 0 1} */
+
+		// cycle 0
+		in_north = '{}
+		
+
+
 		// not sure how to present data best
-		$monitor("Time %0t", $time);
+		// $monitor("Time %0t", $time);
 	end
 endmodule
