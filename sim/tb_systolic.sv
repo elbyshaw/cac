@@ -168,7 +168,83 @@ module tb_systolic ();
 
 		repeat (5) @(posedge clk); // extra wait time
 
+/*				
+		   																	Test 3 : Checkerboard pattern
+	
+		A =	{1 0 1 0
+			 0 1 0 1
+			 1 0 1 0
+			 0 1 0 1}
 
+		B =	{1 0 1 0
+			 0 1 0 1
+			 1 0 1 0
+			 0 1 0 1} 
+
+		C =	{4 4 4 4
+			 4 4 4 4
+			 4 4 4 4
+			 4 4 4 4} */
+
+		in_north = '{0, 1'b1, 0, 1'b1};
+		@(posedge clk);
+		// cycle 1
+		in_north = '{1'b1, 0, 1'b1, 0};
+		@(posedge clk);
+		// cycle 2
+		in_north = '{0, 1'b1, 0, 1'b1};
+		@(posedge clk);
+		// cycle 3
+		in_north = '{1'b1, 0, 1'b1, 0};
+		@(posedge clk);
+
+		//PROCESSING PHASE
+		// cycle 4
+		in_west[0] = 0;
+		@(posedge clk);
+		// cycle 5
+		in_west[0] = 1;
+		in_west[1] = 1;
+		@(posedge clk);
+		// cycle 6
+		in_west[0] = 0;
+		in_west[1] = 0;
+		in_west[2] = 0;
+
+		@(posedge clk);
+		// cycle 7.  At this point, all in_west inputs are 1. have to start clearing them out.
+		in_west[0] = 1;
+		in_west[1] = 1;
+		in_west[2] = 1;
+		in_west[3] = 1;
+		@(posedge clk);
+		// cycle 8
+		in_west[0] = 0;
+
+		in_west[1] = 0;
+		in_west[2] = 0;
+		in_west[3] = 0;
+		@(posedge clk);
+		// cycle 9
+		in_west[2] = 1;
+		in_west[3] = 1;
+		@(posedge clk);
+		// cycle 10
+		in_west[2] = 0;
+
+		in_west[3] = 0;
+		@(posedge clk);
+		// cycle 11
+		in_west[3] = 1;
+		@(posedge clk);
+		// cycle 12
+		in_west[3] = 0;
+		@(posedge clk);
+
+		@(posedge clk);
+		repeat (5) @(posedge clk); // necessary for data to finish computing
+
+		repeat (5) @(posedge clk); // extra wait time
 
 		$finish;
 	end
