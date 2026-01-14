@@ -108,7 +108,7 @@ module tb_systolic ();
 		repeat (5) @(posedge clk); // extra wait time
 
 		/*				
-		   																	Test 2 : All ones
+		Test 2 : All ones
 	
 		A =	{1 1 1 1
 			 1 1 1 1
