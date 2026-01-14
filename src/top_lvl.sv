@@ -13,27 +13,27 @@ module top_lvl (
     input logic rst,
 
     // inputs needed here?
-    input logic [NUM_BITS-1:0] north_i [N],
-    input logic [NUM_BITS-1:0] west_i [N],
+    input logic [NUM_BITS-1:0] north_i [0:N-1],
+    input logic [NUM_BITS-1:0] west_i [0:N-1],
 
     // possibly bad - synthesizes weird
-    output logic [NUM_BITS-1:0] C_o [N][N]
+    output logic [NUM_BITS-1:0] C_o [0:N-1][0:N-1]
 );
 
     // =================== WIRES ==================
     // wires running north-south above and below PEs
     // N+1 x N because there are wires both above and below
-    logic [NUM_BITS-1:0] n_s [N+1][N];
+    logic [NUM_BITS-1:0] n_s [0:N][0:N-1];
     // wires running east-west to the left and right of PEs
     // extra wires to the right go nowhere
-    logic [NUM_BITS-1:0] e_w [N][N+1];
+    logic [NUM_BITS-1:0] e_w [0:N-1][0:N];
 
     // outputs from controller to PEs
-    input_mux_t mux [N][N];
-    logic add_zero [N][N];
+    input_mux_t mux [0:N-1][0:N-1];
+    logic add_zero [0:N-1][0:N-1];
 
     // output from controller to accumulators
-    logic acc_valid [N];
+    logic acc_valid [0:N-1];
 
     controller ctrl (
         .clk_i          (clk),

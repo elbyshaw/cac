@@ -11,7 +11,7 @@ module accumulator (
     // One element in final C array
     input logic [NUM_BITS-1:0] C_i,
     // N registers NUM_BITS wide
-    output logic [NUM_BITS-1:0] product_o [N],
+    output logic [NUM_BITS-1:0] product_o [0:N-1],
 
     // CONTROL SIGNAL
     input logic valid_i

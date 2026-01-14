@@ -10,12 +10,18 @@ module controller (
 
 	// =========== PE CONTROLS ===========
 	// tells each PE which mux state should be active
-	output input_mux_t mux_o [N][N],
+	output input_mux_t mux_o [0:N-1][0:N-1],
 	// tells each PE if it should add 0 or the north input; logic high
-	output logic add_zero_o [N][N],
+	output logic add_zero_o [0:N-1][0:N-1],
 
 	// ======== ACCUMULATOR CONTROLS =========
-	output logic acc_valid_o [N]
+	output logic acc_valid_o [0:N-1],
+
+	// ======== DISTRIBUTOR CONTROLS =========
+	// tells weight_buf to send data
+	output logic wbuf_valid_o,
+	// tells input_act_buf to send data
+	output logic iabuf_valid_o
 );
 	state_t state, next;
 	int i, j;
@@ -113,7 +119,7 @@ module controller (
 		endcase
 	end
 
-	// controls accumulator
+	// controls accumulator & distributors
 	always_ff @(posedge clk_i) begin
 		case (state)
 			S_IDLE: begin
@@ -121,19 +127,27 @@ module controller (
 				acc_mask <= { {N{1'b1}} << N };
 				for (i = 0; i < N; i++) 
 					acc_valid_o[i] <= '0;
+
+				wbuf_valid_o <= '0;
+				iabuf_valid_o <= '0;
 			end
 
 			S_LOADING: begin
 				for (i = 0; i < N; i++) 
 					acc_valid_o[i] <= '0;
+
+				wbuf_valid_o <= 1'b1;
+				iabuf_valid_o <= '0;
 			end
 
 			S_PROCESSING: begin
 				// once (2*N)-1 cycles have passed start shifting acc_mask
 				// BUG?: TIMING MAY NEED TO BE ADJUSTED
-				if (counter >= (2*N)-1 )
+				if (counter >= (2*N)-1)
 					// not sure when exactly this happens in the process?
 					acc_mask <= acc_mask >> 1;
+
+				if (counter >= )
 
 				for (i = 0; i < N; i++)
 					acc_valid_o[i] <= acc_mask[i];
