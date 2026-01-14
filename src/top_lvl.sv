@@ -35,13 +35,43 @@ module top_lvl (
     // output from controller to accumulators
     logic acc_valid [0:N-1];
 
+    // output from controller to distributors
+    logic wbuf_valid;
+    logic iabuf_valid;
+
+
+    // needed for instantiation
+    logic [NUM_BITS-1:0] e_w_col0 [0:N-1];
+
+    always_comb begin
+        for (int i = 0; i < N; i++) begin
+            e_w_col0[i] = e_w[i][0];
+        end
+    end
+
     controller ctrl (
         .clk_i          (clk),
         .rst_i          (rst),
         .ready_i        (/*[BLANK]*/),
         .mux_o          (mux),
         .add_zero_o     (add_zero),
-        .acc_valid_o    (acc_valid)
+        .acc_valid_o    (acc_valid),
+        .wbuf_valid_o   (wbuf_valid),
+        .iabuf_valid_o  (iabuf_valid)
+    );
+
+    weight_buf weight (
+        .clk_i          (clk),
+        .rst_i          (rst_i),
+        .A_o            (n_s[0]),
+        .valid_i        (wbuf_valid)
+    );
+
+    weight_buf input_act (
+        .clk_i          (clk),
+        .rst_i          (rst_i),
+        .B_o            (e_w_col0),
+        .valid_i        (iabuf_valid)
     );
 
     // assign inputs to proper wires

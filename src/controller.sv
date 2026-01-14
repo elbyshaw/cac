@@ -147,7 +147,11 @@ module controller (
 					// not sure when exactly this happens in the process?
 					acc_mask <= acc_mask >> 1;
 
-				if (counter >= )
+				// SOOOO unsure when to put this counter
+				if (counter >= N && counter <= (N+(2*N)-1))
+					iabuf_valid_o <= 1'b1;
+
+				wbuf_valid_o <= '0;
 
 				for (i = 0; i < N; i++)
 					acc_valid_o[i] <= acc_mask[i];
